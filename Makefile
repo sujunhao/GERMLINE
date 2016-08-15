@@ -23,6 +23,4 @@ test: test_plink
 
 test_plink:
 	-@rm -f test/generated.match test/generated.log test/generated.err test/generated.out
-	-@./$(MAIN) -bits 50 -min_m 1 -err_hom 2 -err_het 0 < test/test.run >test/generated.out 2>| test/generated.err | echo "---\nRunning Test Case\n---"
-	diff -q -s test/expected.match test/generated.match
-
+	-@./$(MAIN) -bits 50 -min_m 1 -err_hom 2 -err_het 0 < test/test.run >test/generated.out 2>| test/generated.err | echo "---\nRunning Test Case\n---\nrun result in ./test/generated.match \n"
