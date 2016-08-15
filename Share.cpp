@@ -1,5 +1,5 @@
 
-#include "Individual.h"
+#include "Individuals.h"
 
 Share::Share( Individual * cip , boost::dynamic_bitset<>& hash ) : ms( hash )
 {
@@ -13,9 +13,25 @@ void Share::assertMatches()
 
 	for ( i = matches.begin() ; i != matches.end() ; i++ )
 	{
+		// if (POI && (*i) != poi)
+		// {
+		// 	cout << "break out in share assert match " + (*i)->getID() + " " << poi->getID() << endl;
+		// 	continue;
+		// }
 		ii = i;
+		// cout << "+-   " + (*i)->getID() << endl;
 		for ( ++ii ; ii != matches.end() ; ii++ )
 		{
+			// cout << (*ii)->getID() << endl;
+			if (POI)
+			{
+				// cout << poi->getID() + " " + (*i)->getID() + "   " + (*ii)->getID()<< endl;
+				if ((*i)->getID() != poi->getID() && (*ii)->getID() != poi->getID()) 
+				{
+					// cout << "+-   " + (*i)->getID() + "   " + (*ii)->getID()<< endl;
+					break;
+				}
+			}
 			// Check if this pair matched in previous word
 			m = (*i)->getPreviousMatch( *ii );
 			if ( m != NULL )

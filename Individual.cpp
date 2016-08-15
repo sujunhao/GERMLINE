@@ -3,6 +3,7 @@
 #include "Individual.h"
 using namespace std;
 
+
 // Individual(): default constructor
 Individual::Individual() : sex(MALE),affected(false)
 {}

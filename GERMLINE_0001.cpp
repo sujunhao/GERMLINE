@@ -7,6 +7,7 @@ int MARKER_SET_SIZE = 128;
 bool PRINT_HAPS = false;
 bool PRINT_MATCH_HAPS = false;
 bool ROI = false;
+bool POI = false;
 bool HAP_EXT = false;
 bool WIN_EXT = false;
 bool ALLOW_HOM = false;
@@ -28,6 +29,7 @@ int main(int argc, char* argv[])
 		else if( strncmp(argv[i], "-from_snp", strlen("-from_snp")) == 0 && i < argc-1 )	rs_range[0] = argv[++i];
 		else if( strncmp(argv[i], "-to_snp", strlen("-to_snp")) == 0 && i < argc-1 )		rs_range[1] = argv[++i];
 		else if( strncmp(argv[i], "-haps", strlen("-haps")) == 0 )							PRINT_HAPS = true;
+		else if( strncmp(argv[i], "-poi", strlen("-poi")) == 0 )							POI = true;
 		else if( strncmp(argv[i], "-print", strlen("-print")) == 0 )						PRINT_MATCH_HAPS = true;
 		else if( strncmp(argv[i], "-map", strlen("-map")) == 0 && i < argc-1)				map = argv[++i];
 		else if( strncmp(argv[i], "-bits", strlen("-bits")) == 0 && i < argc-1)				MARKER_SET_SIZE = atoi(argv[++i]);

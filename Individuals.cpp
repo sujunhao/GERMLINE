@@ -1,10 +1,15 @@
 // Individuals.cpp: A collection of individuals
-
-#include "Individuals.h"
 #include <iostream>
+#include "Individuals.h"
+
 using namespace std;
 
 
+Individual * poi;
+void definepoi()
+{
+	cout << "define" << endl;
+}
 // Individuals(): default constructor
 Individuals::Individuals()
 {
@@ -57,6 +62,11 @@ Individual * Individuals::next()
 void Individuals::addIndividual(Individual * ind)
 {
 	pedigree.insert(make_pair(ind->getFamily() + " " + ind->getID(), ind));
+	if (POI && !poi)
+	{
+		poi = ind;
+		// cout << "the targer in " + ind->getID() << endl;
+	}
 }
 
 // end Individuals.cpp

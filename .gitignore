@@ -2,3 +2,4 @@ test/generated.err
 test/generated.log
 test/generated.match
 test/generated.out
+*.o

@@ -11,6 +11,14 @@
 #include <ostream>
 using namespace std;
 
+#ifndef HAVEPOI
+#define HAVEPOI
+extern Individual * poi;
+void definepoi();
+#endif /* HAVEPOI */
+
+
+
 class Individuals
 {
 public:
@@ -47,6 +55,7 @@ private:
 	// stores the individuals
 	map<string,Individual*> pedigree;
 	map<string,Individual*>::iterator iter;
+ 	
 
 	long sets;
 };

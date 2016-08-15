@@ -8,6 +8,7 @@
 #include <iostream>
 #include <string.h>
 
+
 using namespace std;
 
 // where we are in the sequence (markerset & physical)
@@ -23,6 +24,7 @@ extern bool MAX_ERRORS_FIXED;
 extern bool PRINT_HAPS;
 extern bool PRINT_MATCH_HAPS;
 extern bool ROI;
+extern bool POI;
 extern bool HAP_EXT;
 extern bool WIN_EXT;
 extern bool ALLOW_HOM;

@@ -13,6 +13,7 @@ $(OBJS): $(SRCS)
 	$(CC) $(OPT) -c $*.cpp
 clean:
 	-rm -f *.o $(MAIN) test/generated.match test/generated.log test/generated.err
+	
 test_case:
 	-@./$(MAIN) -bits 50 -min_m 1 -err_hom 2 -err_het 0 < test/test.run 2> test/generated.err | echo "Running Test Case"
 	diff -q -s test/expected.match test/generated.match
@@ -21,6 +22,7 @@ test_case:
 test: test_plink
 
 test_plink:
-	rm -f test/generated.match test/generated.log test/generated.err test/generated.out
-	./$(MAIN) -bits 50 -min_m 1 -err_hom 2 -err_het 0 < test/test.run 2> test/generated.err | echo -e "---\nRunning Test Case\n---"
+	-@rm -f test/generated.match test/generated.log test/generated.err test/generated.out
+	-@./$(MAIN) -poi -bits 50 -min_m 1 -err_hom 2 -err_het 0 < test/test.run >test/generated.out 2>| test/generated.err | echo "---\nRunning Test Case\n---"
 	diff -q -s test/expected.match test/generated.match
+
