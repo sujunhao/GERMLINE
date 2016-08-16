@@ -23,6 +23,8 @@ void Match::extendBack()
 bool Match::approxEqual()
 {
 	// homozygosity check
+	boost::dynamic_bitset<> xtmp(MARKER_SET_SIZE);
+	xtmp.flip();
 	if ( node[0] == node[1] )
 	{
 		if ( ALLOW_HOM )
@@ -40,7 +42,8 @@ bool Match::approxEqual()
 		// 1. Haplotype extension
 		for ( int a = 0 ; a < 2 ; a++ ) {
 			for ( int b = 0 ; b < 2 ; b++ ) { 
-				if ( (int)(node[0]->getChromosome( a )->getMarkerSet()->getMarkerBits() ^ node[1]->getChromosome( b )->getMarkerSet()->getMarkerBits()).count() <= MAX_ERR_HOM )
+				if (HG) xtmp = (node[0]->getChromosome( a )->getMarkerSet()->xgetMarkerBits() | node[1]->getChromosome( b )->getMarkerSet()->xgetMarkerBits()).flip();
+				if ( (int)( (node[0]->getChromosome( a )->getMarkerSet()->getMarkerBits() ^ node[1]->getChromosome( b )->getMarkerSet()->getMarkerBits()) & xtmp ).count() <= MAX_ERR_HOM )
 				{
 					if ( CONF )
 					{
@@ -66,6 +69,13 @@ bool Match::approxEqual()
 			= ( node[0]->getChromosome( 0 )->getMarkerSet()->getMarkerBits() ^ node[0]->getChromosome( 1 )->getMarkerSet()->getMarkerBits() ).flip()
 			& ( node[1]->getChromosome( 0 )->getMarkerSet()->getMarkerBits() ^ node[1]->getChromosome( 1 )->getMarkerSet()->getMarkerBits() ).flip();
 
+		if (HG)
+		{
+			xtmp = node[0]->getChromosome( 0 )->getMarkerSet()->xgetMarkerBits() | node[0]->getChromosome( 1 )->getMarkerSet()->xgetMarkerBits()
+				 | node[1]->getChromosome( 0 )->getMarkerSet()->xgetMarkerBits() | node[1]->getChromosome( 1 )->getMarkerSet()->xgetMarkerBits();
+			xtmp = xtmp.flip();
+		}
+		mask = mask & xtmp;
 		// assert that homozygous SNPs are identical
 		if ( ((node[0]->getChromosome( 0 )->getMarkerSet()->getMarkerBits() ^ node[1]->getChromosome( 0 )->getMarkerSet()->getMarkerBits()) & mask).count() <= MAX_ERR_HET )
 		{
@@ -90,9 +100,19 @@ int Match::scanLeft( unsigned int ms )
 	bool err = false;
 	int marker;
 
+	boost::dynamic_bitset<> xtmp(MARKER_SET_SIZE);
+	xtmp.flip();
+
 	boost::dynamic_bitset<> mask
 		= ( node[0]->getChromosome( 0 )->getMarkerSet(ms)->getMarkerBits() ^ node[0]->getChromosome( 1 )->getMarkerSet(ms)->getMarkerBits() ).flip()
 		& ( node[1]->getChromosome( 0 )->getMarkerSet(ms)->getMarkerBits() ^ node[1]->getChromosome( 1 )->getMarkerSet(ms)->getMarkerBits() ).flip();
+	if (HG)
+	{
+		xtmp = node[0]->getChromosome( 0 )->getMarkerSet()->xgetMarkerBits() | node[0]->getChromosome( 1 )->getMarkerSet()->xgetMarkerBits()
+			 | node[1]->getChromosome( 0 )->getMarkerSet()->xgetMarkerBits() | node[1]->getChromosome( 1 )->getMarkerSet()->xgetMarkerBits();
+		xtmp = xtmp.flip();
+	}
+	mask = mask & xtmp;
 	mask = ( node[0]->getChromosome( 0 )->getMarkerSet(ms)->getMarkerBits() ^ node[1]->getChromosome( 0 )->getMarkerSet(ms)->getMarkerBits()) & mask;
 
 	for( marker = MARKER_SET_SIZE - 1 ; marker >= 0 && !err ; marker-- )
@@ -105,10 +125,19 @@ int Match::scanRight( unsigned int ms )
 {
 	bool err = false;
 	int marker;
+	boost::dynamic_bitset<> xtmp(MARKER_SET_SIZE);
+	xtmp.flip();
 
 	boost::dynamic_bitset<> mask
 		= ( node[0]->getChromosome( 0 )->getMarkerSet(ms)->getMarkerBits() ^ node[0]->getChromosome( 1 )->getMarkerSet(ms)->getMarkerBits() ).flip()
 		& ( node[1]->getChromosome( 0 )->getMarkerSet(ms)->getMarkerBits() ^ node[1]->getChromosome( 1 )->getMarkerSet(ms)->getMarkerBits() ).flip();
+	if (HG)
+	{
+		xtmp = node[0]->getChromosome( 0 )->getMarkerSet()->xgetMarkerBits() | node[0]->getChromosome( 1 )->getMarkerSet()->xgetMarkerBits()
+			 | node[1]->getChromosome( 0 )->getMarkerSet()->xgetMarkerBits() | node[1]->getChromosome( 1 )->getMarkerSet()->xgetMarkerBits();
+		xtmp = xtmp.flip();
+	}
+	mask = mask & xtmp;
 	mask = ( node[0]->getChromosome( 0 )->getMarkerSet(ms)->getMarkerBits() ^ node[1]->getChromosome( 0 )->getMarkerSet(ms)->getMarkerBits()) & mask;
 
 	for( marker = 0 ; marker < MARKER_SET_SIZE && !err ; marker++ )
@@ -119,9 +148,19 @@ int Match::scanRight( unsigned int ms )
 
 int Match::diff( unsigned int ms )
 {
+	boost::dynamic_bitset<> xtmp(MARKER_SET_SIZE);
+	xtmp.flip();
+
 	boost::dynamic_bitset<> mask
 		= ( node[0]->getChromosome( 0 )->getMarkerSet(ms)->getMarkerBits() ^ node[0]->getChromosome( 1 )->getMarkerSet(ms)->getMarkerBits() ).flip()
 		& ( node[1]->getChromosome( 0 )->getMarkerSet(ms)->getMarkerBits() ^ node[1]->getChromosome( 1 )->getMarkerSet(ms)->getMarkerBits() ).flip();
+	if (HG)
+	{
+		xtmp = node[0]->getChromosome( 0 )->getMarkerSet()->xgetMarkerBits() | node[0]->getChromosome( 1 )->getMarkerSet()->xgetMarkerBits()
+			 | node[1]->getChromosome( 0 )->getMarkerSet()->xgetMarkerBits() | node[1]->getChromosome( 1 )->getMarkerSet()->xgetMarkerBits();
+		xtmp = xtmp.flip();
+	}
+	mask = mask & xtmp;
 	mask = ( node[0]->getChromosome( 0 )->getMarkerSet(ms)->getMarkerBits() ^ node[1]->getChromosome( 0 )->getMarkerSet(ms)->getMarkerBits()) & mask;
 
 	return int(mask.count());

@@ -21,6 +21,7 @@ void GERMLINE::mine()
 	inputManager.getIndividuals();
 	if ( ! pie->valid() ) return;
 	string out = inputManager.getOutput();
+	cout << "asd";
 
 	pie->loadInput(individuals);
 	MatchesBuilder mb( individuals , pie );

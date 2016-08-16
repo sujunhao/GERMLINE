@@ -108,9 +108,14 @@ void PEDIndividualsExtractor::getCompleteMarkerSet()
 			if (HG)
 			{
 				if (marker=='0' || marker=='-')
+				{
 					markerSet[al].xset(position , true );
-				else if ( snps.mapNucleotideToBinary(marker,position_ms*MARKER_SET_SIZE+position) == 1 )
-					markerSet[al].set(position , true );
+				}
+				else
+				{
+					if ( snps.mapNucleotideToBinary(marker,position_ms*MARKER_SET_SIZE+position) == 1 )
+						markerSet[al].set(position , true );
+				} 
 			}
 			else if ( snps.mapNucleotideToBinary(marker,position_ms*MARKER_SET_SIZE+position) == 1 )
 					markerSet[al].set(position , true );
