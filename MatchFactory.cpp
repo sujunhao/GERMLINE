@@ -37,6 +37,19 @@ void MatchFactory::hash( Individual * i )
 	
 	for ( int c = 0 ; c < haps ; c++ )
 	{
+		if (HG)
+		{
+			//if xmark empty
+			if ( (i->getChromosome(c)->getMarkerSet()->xgetMarkerBits()).count() == 0 )
+			{
+				boost::dynamic_bitset<>& ms = i->getChromosome(c)->getMarkerSet()->getMarkerBits();
+				if ( (iter = segments.find( ms )) == segments.end() )
+					segments.insert( make_pair ( ms , Share( i , ms ) ) );
+				else
+					iter->second.add( i );
+			}
+			continue;
+		}
 		boost::dynamic_bitset<>& ms = i->getChromosome(c)->getMarkerSet()->getMarkerBits();
 		if ( (iter = segments.find( ms )) == segments.end() )
 			segments.insert( make_pair ( ms , Share( i , ms ) ) );

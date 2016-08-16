@@ -21,11 +21,13 @@ public:
 
 	void clear();
 	void set( int , bool );
+	void xset( int , bool );
 
 	void print(ostream&);
 	void print(ostream&, unsigned int, unsigned int);
 
 	boost::dynamic_bitset<>& getMarkerBits();
+	boost::dynamic_bitset<>& xgetMarkerBits();
 
     // getMarker(): gets marker
 	// Precondition: None.
@@ -46,6 +48,7 @@ public:
 private:
 	// markers stored as a bitset to allow for fast comparisons
 	boost::dynamic_bitset<> markers;
+	boost::dynamic_bitset<> xmarkers;
 };
 
 // operator<<:overloaded insertion operator

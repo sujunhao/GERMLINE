@@ -105,8 +105,15 @@ void PEDIndividualsExtractor::getCompleteMarkerSet()
 			stripWhitespace();
 
 			char marker = stream.peek();
-			if ( snps.mapNucleotideToBinary(marker,position_ms*MARKER_SET_SIZE+position) == 1 )
-				markerSet[al].set(position , true );
+			if (HG)
+			{
+				if (marker=='0' || marker=='-')
+					markerSet[al].xset(position , true );
+				else if ( snps.mapNucleotideToBinary(marker,position_ms*MARKER_SET_SIZE+position) == 1 )
+					markerSet[al].set(position , true );
+			}
+			else if ( snps.mapNucleotideToBinary(marker,position_ms*MARKER_SET_SIZE+position) == 1 )
+					markerSet[al].set(position , true );
 			
 			stream.get();
 		}

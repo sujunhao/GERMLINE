@@ -9,6 +9,7 @@ using namespace std;
 MarkerSet::MarkerSet()
 {
 	markers.resize(MARKER_SET_SIZE);
+	if (HG)	xmarkers.resize(MARKER_SET_SIZE);
 }
 
 MarkerSet::MarkerSet(const MarkerSet& copy)
@@ -27,10 +28,20 @@ boost::dynamic_bitset<>& MarkerSet::getMarkerBits()
 	return markers;
 }
 
+boost::dynamic_bitset<>& MarkerSet::xgetMarkerBits()
+{
+	return xmarkers;
+}
+
 // getMarker(): gets marker
 bool MarkerSet::getMarker(int index) const
 {
 	return markers.test( index );
+}
+
+void MarkerSet::xset(int index , bool bit )
+{
+	xmarkers.set( index , bit );
 }
 
 void MarkerSet::set(int index , bool bit )

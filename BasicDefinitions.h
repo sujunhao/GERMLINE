@@ -25,6 +25,7 @@ extern bool PRINT_HAPS;
 extern bool PRINT_MATCH_HAPS;
 extern bool ROI;
 extern bool POI;
+extern bool HG;
 extern bool HAP_EXT;
 extern bool WIN_EXT;
 extern bool ALLOW_HOM;
