@@ -3,8 +3,12 @@ GERMLINE
 http://www1.cs.columbia.edu/~gusev/germline/
 
 
-> version1.4.1 
-> fix bug and can just test the first individual to other use `-poi` option
+> version1.4.1
+> fix bug and add new feature
+
+# new feature
+allow only test between first individual to other | use  `-poi` (person of interest)
+allow missing SNP in ped file | use `-hg` (have gap)
 
 
 # About
