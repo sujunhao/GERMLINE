@@ -23,7 +23,8 @@ void Match::extendBack()
 bool Match::approxEqual()
 {
 	// homozygosity check
-	boost::dynamic_bitset<> xtmp(MARKER_SET_SIZE);
+	boost::dynamic_bitset<> xtmp();
+	xtmp.resize(node[0]->getChromosome( 0 )->getMarkerSet()->getMarkerBits().size());
 	xtmp.flip();
 	if ( node[0] == node[1] )
 	{
@@ -100,7 +101,8 @@ int Match::scanLeft( unsigned int ms )
 	bool err = false;
 	int marker;
 
-	boost::dynamic_bitset<> xtmp(MARKER_SET_SIZE);
+	boost::dynamic_bitset<> xtmp();
+	xtmp.resize(node[0]->getChromosome( 0 )->getMarkerSet()->getMarkerBits().size());
 	xtmp.flip();
 
 	boost::dynamic_bitset<> mask
@@ -125,7 +127,8 @@ int Match::scanRight( unsigned int ms )
 {
 	bool err = false;
 	int marker;
-	boost::dynamic_bitset<> xtmp(MARKER_SET_SIZE);
+	boboost::dynamic_bitset<> xtmp();
+	xtmp.resize(node[0]->getChromosome( 0 )->getMarkerSet()->getMarkerBits().size());
 	xtmp.flip();
 
 	boost::dynamic_bitset<> mask
@@ -148,7 +151,8 @@ int Match::scanRight( unsigned int ms )
 
 int Match::diff( unsigned int ms )
 {
-	boost::dynamic_bitset<> xtmp(MARKER_SET_SIZE);
+	boost::dynamic_bitset<> xtmp();
+	xtmp.resize(node[0]->getChromosome( 0 )->getMarkerSet()->getMarkerBits().size());
 	xtmp.flip();
 
 	boost::dynamic_bitset<> mask
