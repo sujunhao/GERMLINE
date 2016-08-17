@@ -4,8 +4,11 @@ http://www1.cs.columbia.edu/~gusev/germline/
 
 
 > version1.4.1
-> fix bug and can just test the first individual to other use `-poi` option
+> fix bug and add new feature
 
+# new feature
+allow only test between first individual to other | use  `-poi` (person of interest)
+allow missing SNP in ped file | use `-hg` (have gap)
 
 # About
 GERMLINE is a program for discovering long shared segments of Identity by Descent (IBD) between pairs of individuals in a large population. It takes as input genotype or haplotype marker data for individuals (as well as an optional known pedigree) and generates a list of all pairwise segmental sharing.
