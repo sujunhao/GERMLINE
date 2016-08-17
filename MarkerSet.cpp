@@ -15,11 +15,13 @@ MarkerSet::MarkerSet()
 MarkerSet::MarkerSet(const MarkerSet& copy)
 {
 	markers = copy.markers; // copy.getMarkerBits();
+	xmarkers = copy.xmarkers; // copy.getMarkerBits();
 }
 
 void MarkerSet::clear()
 {
 	markers.reset();
+	xmarkers.reset();
 }
 
 
