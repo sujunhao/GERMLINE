@@ -8,6 +8,7 @@ http://www1.cs.columbia.edu/~gusev/germline/
 
 # new feature
 allow only test between first individual to other | use  `-poi` (person of interest)
+
 allow missing SNP in ped file | use `-hg` (have gap)
 
 
