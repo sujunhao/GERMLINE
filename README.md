@@ -5,6 +5,7 @@ http://www1.cs.columbia.edu/~gusev/germline/
 
 > version1.4.1
 > fix bug and add new feature
+change detail to check [README](README)
 
 # new feature
 allow only test between first individual to other | use  `-poi` (person of interest)
