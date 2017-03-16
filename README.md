@@ -1,12 +1,12 @@
-#GERMLINE
+# GERMLINE
 
 
-##About
+## About
 
 This version base on Germline 1.4.1 [detail](http://www1.cs.columbia.edu/~gusev/germline/)
 
 
-##New feature
+## New feature
 
 
 Flag		|	Default		|		Description
@@ -18,7 +18,7 @@ Flag		|	Default		|		Description
 
 
 
-##fix bug
+## fix bug
 
  >in file PEDIndividualsExtractor.cpp, an infinite loop due to while statement
 
@@ -68,7 +68,7 @@ PEDIndividualsExtractor.h
 
 
 
-##feature POI
+## feature POI
 
 
 ### define flag -poi
@@ -125,7 +125,7 @@ Individuals.cpp
 +		}
 ```
 
-###change the add Match condition
+### change the add Match condition
 
 share.cpp
 ```
@@ -142,7 +142,7 @@ share.cpp
 
 
 
-##HG
+## HG
 
 in order to allow missing snp, each individual should save their missing infomastion, so beside the hash table in each match, we add a bit to save missing snp
 
